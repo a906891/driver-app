@@ -1,6 +1,9 @@
 import 'package:driver_app/authentication/car_info_screen.dart';
 import 'package:driver_app/authentication/login_screen.dart';
+import 'package:driver_app/widgets/progress_dialog.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -16,6 +19,28 @@ class _SignUpScreenState extends State<SignUpScreen> {
   TextEditingController phonetextEditingController = TextEditingController();
   TextEditingController passwordtextEditingController = TextEditingController();
 
+  //form check
+  ValidateForm(){
+    if(nametextEditingController.text.length < 3){
+      Fluttertoast.showToast(msg: "Name must be atleast 3 characters");
+    }
+    else if(!emailtextEditingController.text.contains("@")){
+      Fluttertoast.showToast(msg: "Email is not valid");
+    }
+    else if(phonetextEditingController.text.isEmpty ){
+      Fluttertoast.showToast(msg: "Phone number is required");
+    }
+    else if(passwordtextEditingController.text.length < 6 ){
+      Fluttertoast.showToast(msg: "Password must be atleast 6 characters");
+    }
+    else{
+
+
+      showDialog(context: context, builder: (BuildContext c){
+        return ProgressDialog(message: "Processing, Please wait",);
+      }, barrierDismissible: false);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -164,11 +189,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
               ElevatedButton(
                   onPressed: (){
-                   Navigator.push(context, MaterialPageRoute(builder: (c)=>CarInfoScreen()));
+                    ValidateForm();
                   },
                 style: ElevatedButton.styleFrom(
                   primary: Colors.lightGreenAccent,
+                  shape: const StadiumBorder(),
                 ),
+
                   child: const Text("Create Account",
                   style: TextStyle(
                     color: Colors.black54,
@@ -176,6 +203,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     fontSize: 15
                   ),
                   ),
+                
               ),
 
               const SizedBox(height: 10,),
