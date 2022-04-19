@@ -1,4 +1,7 @@
+import 'package:driver_app/splashScreen/splash_screen.dart';
 import 'package:flutter/material.dart';
+
+import '../global/global.dart';
 
 class ProfileTabPage extends StatefulWidget {
   const ProfileTabPage({Key? key}) : super(key: key);
@@ -10,8 +13,14 @@ class ProfileTabPage extends StatefulWidget {
 class _ProfileTabPageState extends State<ProfileTabPage> {
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text("Profile Tab"),
+    return Center(
+      child: ElevatedButton(
+          child: const Text("Sign out"),
+          onPressed: (){
+            fAuth.signOut();
+            Navigator.push(context, MaterialPageRoute(builder: (c)=> const MySplashScreen()));
+          } ,
+      ),
     );
   }
 }
