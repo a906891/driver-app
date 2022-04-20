@@ -1,4 +1,5 @@
 import 'package:driver_app/tabPages/earning_tab.dart';
+import 'package:driver_app/tabPages/home_switchoff.dart';
 import 'package:driver_app/tabPages/home_tab.dart';
 import 'package:driver_app/tabPages/profile_tab.dart';
 import 'package:driver_app/tabPages/rating_tab.dart';
@@ -36,7 +37,7 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
         physics: NeverScrollableScrollPhysics(),
         controller: tabController,
         children: const [
-          HomeTabPage(),
+          HomeSwitchOff(),
           EarningTabPage(),
           RatingTabPage(),
           ProfileTabPage()

@@ -1,6 +1,7 @@
 import 'dart:async';
-
+import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class HomeTabPage extends StatefulWidget {
@@ -12,9 +13,32 @@ class HomeTabPage extends StatefulWidget {
 
 class _HomeTabPageState extends State<HomeTabPage> {
 
+
+
   GoogleMapController? newGoogleMapController;
 
   final Completer<GoogleMapController> _controllergooglemap = Completer();
+
+  Position? currentPosition;
+  var geoLocator = Geolocator();
+  double topPaddingOfMap = 0;
+
+
+
+  //Getting current location
+  locatePosition() async{
+    Position position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+    currentPosition = position;
+
+    LatLng latlatPosition = LatLng(position.latitude, position.longitude);
+
+    log(position.latitude);
+
+//Move camera to the current position
+    CameraPosition cameraPosition = CameraPosition(target: latlatPosition,zoom: 14);
+    newGoogleMapController?.animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
+  }
+
 
   static const CameraPosition _kGooglePlex = CameraPosition(
     target: LatLng(37.42796133580664, -122.085749655962),
@@ -192,12 +216,24 @@ class _HomeTabPageState extends State<HomeTabPage> {
     return Stack(
       children: [
         GoogleMap(
+          padding: EdgeInsets.only(top: topPaddingOfMap),
           mapType: MapType.normal,
           myLocationEnabled: true,
           initialCameraPosition: _kGooglePlex,
+          //current location tools start
+          zoomGesturesEnabled: true,
+          myLocationButtonEnabled: true,
+          zoomControlsEnabled: false,
+          //end
           onMapCreated: (GoogleMapController controller){
             _controllergooglemap.complete(controller);
             newGoogleMapController = controller;
+
+            setState(() {
+              topPaddingOfMap = 60.0;
+            });
+            //Get the current position
+            locatePosition();
 
             //black theme google map
             blackThemeGoogleMap();
