@@ -1,10 +1,8 @@
 import 'dart:async';
-
 import 'package:driver_app/MainScreens/main_screen.dart';
 import 'package:driver_app/authentication/login_screen.dart';
 import 'package:driver_app/authentication/signup_screen.dart';
 import 'package:flutter/material.dart';
-
 import '../global/global.dart';
 
 class MySplashScreen extends StatefulWidget {
@@ -15,54 +13,55 @@ class MySplashScreen extends StatefulWidget {
 }
 
 class _MySplashScreenState extends State<MySplashScreen> {
-
-  startTimer(){
-    Timer(const Duration(seconds: 2) , () async {
-
+  startTimer() {
+    Timer(const Duration(seconds: 2), () async {
       //Checks if the user is logged in first
-      if(await fAuth.currentUser != null)
-        {
-          currentFirebaseUser = fAuth.currentUser;
-          Navigator.push(context, MaterialPageRoute(builder: (c)=> MainScreen()));
-        }
-      else{
+      if (await fAuth.currentUser != null) {
+        currentFirebaseUser = fAuth.currentUser;
+        Navigator.push(
+            context, MaterialPageRoute(builder: (c) => MainScreen()));
+      } else {
         // send user to home screen
-        Navigator.push(context, MaterialPageRoute(builder: (c)=> LoginScreen()));
+        Navigator.push(
+            context, MaterialPageRoute(builder: (c) => LoginScreen()));
       }
-
     });
   }
 
   // starts the timer automatically
   @override
   void initState() {
-
     super.initState();
-     startTimer();
+    startTimer();
   }
 
   @override
-  Widget build(BuildContext context)
-  {
+  Widget build(BuildContext context) {
     return Material(
       child: Container(
-        color: Colors.black,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset("images/logo1.png"),
+          color: Colors.black,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: const [
 
-            SizedBox(height: 10,),
-            
-            const Text(
-              "Driver App Clone",
-              style: TextStyle(fontSize: 20,
-              color: Colors.white,
-              fontWeight: FontWeight.bold),
-            )
-          ],
-        )
-      ),
+              SizedBox(
+                height: 10,
+              ),
+              Text(
+                "Welcome to \nEmployee App",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    fontSize: 30,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'Righteous'),
+              ),
+
+              SizedBox(height: 50.0,),
+
+              CircularProgressIndicator(),
+            ],
+          )),
     );
   }
 }

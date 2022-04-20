@@ -11,6 +11,8 @@ void main() async {
       child: MaterialApp(
         title: 'Drivers App',
         theme: ThemeData(
+          //customized default font theme
+          fontFamily: 'Righteous',
           primarySwatch: Colors.blue,
         ),
         home: const MySplashScreen(),

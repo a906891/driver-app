@@ -36,11 +36,7 @@ class _HomeSwitchOffState extends State<HomeSwitchOff> {
     });
     Fluttertoast.showToast(msg: "data collected");
 
-
   }
-
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -61,9 +57,6 @@ class _HomeSwitchOffState extends State<HomeSwitchOff> {
 
             Text("Old Latitude was $oldlatitude"),
             Text("Old Latitude was $oldlongitude"),
-
-
-
 
           ],
         ),

@@ -42,7 +42,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     }
   }
 
-    saveDriverInfoNow() async{
+  saveDriverInfoNow() async{
       showDialog(context: context, builder: (BuildContext c){
         return ProgressDialog(message: "Processing, Please wait",);
       }, barrierDismissible: false);
@@ -92,21 +92,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
           padding: const EdgeInsets.all(20),
           child: Column(
             children: [
-              const SizedBox(height: 20,),
+              const SizedBox(height: 150,),
 
-              Padding(
-                padding: const EdgeInsets.all(40.0),
-                child: Image.asset("images/logo1.png"),
-              ),
 
-              const SizedBox(height: 10,),
-
-              const Text("Register as a driver",
+              const Text("Register Employee",
               style: TextStyle(
-                fontSize: 26,
+                fontSize: 30,
                 color: Colors.grey,
                 fontWeight: FontWeight.bold,
               ) ,),
+
+              const SizedBox(height: 60,),
 //Name
               TextField(
                 controller: nametextEditingController,
@@ -125,17 +121,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
                   hintStyle: TextStyle(
                     color: Colors.grey,
-                    fontSize: 15,
+                    fontSize: 20,
                   ),
-                  labelStyle: TextStyle(
-                      color: Colors.grey,
-                      fontSize: 10
-                  )
+
                 ),
 
               ),
 
-              const SizedBox(height: 10,),
+              const SizedBox(height: 15,),
 //Email
               TextField(
                 controller: emailtextEditingController,
@@ -155,17 +148,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
                     hintStyle: TextStyle(
                       color: Colors.grey,
-                      fontSize: 15,
+                      fontSize: 20,
                     ),
-                    labelStyle: TextStyle(
-                        color: Colors.grey,
-                        fontSize: 10
-                    )
+
                 ),
 
               ),
 
-              const SizedBox(height: 10,),
+              const SizedBox(height: 15,),
 //Phone
               TextField(
                 controller: phonetextEditingController,
@@ -185,17 +175,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
                     hintStyle: TextStyle(
                       color: Colors.grey,
-                      fontSize: 15,
+                      fontSize: 20,
                     ),
-                    labelStyle: TextStyle(
-                        color: Colors.grey,
-                        fontSize: 10
-                    )
+
                 ),
 
               ),
 
-              const SizedBox(height: 10,),
+              const SizedBox(height: 15,),
 //Password
               TextField(
                 controller: passwordtextEditingController,
@@ -216,28 +203,26 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
                     hintStyle: TextStyle(
                       color: Colors.grey,
-                      fontSize: 15,
+                      fontSize: 20,
                     ),
-                    labelStyle: TextStyle(
-                        color: Colors.grey,
-                        fontSize: 10
-                    )
+
                 ),
 
               ),
 
-              const SizedBox(height: 30,),
+              const SizedBox(height: 50,),
 
               ElevatedButton(
                   onPressed: (){
                     validateForm();
                   },
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.lightGreenAccent,
+                  primary: Colors.green,
                   shape: const StadiumBorder(),
+                  padding: const EdgeInsets.all(15.0)
                 ),
 
-                  child: const Text("Create Account",
+                  child: const Text("Register Now",
                   style: TextStyle(
                     color: Colors.black54,
                     fontWeight: FontWeight.bold,
