@@ -54,9 +54,6 @@ class _HomeTabPageState extends State<HomeTabPage> {
 
     LatLng latlatPosition = LatLng(position.latitude, position.longitude);
 
-    print("position latitude + "+ position.latitude.toString());
-    print("position longitude + "+ position.longitude.toString());
-
     Map locationInfoMap = {
       "latitude": position.latitude.toString().trim(),
       "longitude": position.longitude.toString().trim(),
@@ -66,7 +63,6 @@ class _HomeTabPageState extends State<HomeTabPage> {
     driversRef.child(currentFirebaseUser!.uid).child("location_details").set(locationInfoMap).asStream();
 
     Fluttertoast.showToast(msg: "location details has been saved " + updater.toString()  + " times");
-
 
 //Move camera to the current position
     CameraPosition cameraPosition = CameraPosition(target: latlatPosition,zoom: 14);

@@ -1,9 +1,11 @@
-import 'package:driver_app/main.dart';
+import 'dart:convert';
+import 'dart:html';
 import 'package:driver_app/tabPages/home_tab.dart';
 import 'package:firebase_database/firebase_database.dart';
-import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import '../global/global.dart';
+import 'package:location/location.dart';
 
 class HomeSwitchOff extends StatefulWidget {
   const HomeSwitchOff({Key? key}) : super(key: key);
@@ -14,19 +16,31 @@ class HomeSwitchOff extends StatefulWidget {
 
 
 class _HomeSwitchOffState extends State<HomeSwitchOff> {
-  String s = "Here is the data";
 
-  @override
-  initState() {
-    super.initState();
+  String oldlatitude = "0";
+  String oldlongitude = "0";
+
+  DatabaseReference driversRef = FirebaseDatabase.instance.ref().child("drivers").
+  child(currentFirebaseUser!.uid).child("location_details");
+
+  getlocation() async {
+
+    // once
+    DatabaseEvent event = await driversRef.once();
+    print(event.snapshot.value);
+
+    Map<String,dynamic> data = jsonDecode(jsonEncode(event.snapshot.value));
+
+    setState(() {
+      oldlatitude = data['latitude'].toString();
+      oldlongitude = data['longitude'].toString();
+    });
+    Fluttertoast.showToast(msg: "data collected");
+
 
   }
 
-  getlocation(){
 
-  }
-
-  DatabaseReference driversRef = FirebaseDatabase.instance.ref().child("drivers").child(currentFirebaseUser!.uid).child("location_details");
 
 
   @override
@@ -42,20 +56,16 @@ class _HomeSwitchOffState extends State<HomeSwitchOff> {
                       MaterialPageRoute(builder: (c) => const HomeTabPage()));
                 },
                 child: const Text("Switch On")),
-            ElevatedButton(onPressed: () {}, child: const Text("Get Data")),
+            ElevatedButton(onPressed: () {
+                getlocation();
+            }, child: Text("Get Data from firebase")),
 
-            Flexible(
-                child: FirebaseAnimatedList(
-                  shrinkWrap: true,
-                    query: driversRef,
-                    itemBuilder: (BuildContext context, DataSnapshot snapshot,
-                        Animation<double> animation, int index) {
-                      return Text(snapshot.value.toString(),
-                      style: const TextStyle(
-                        fontSize:16.0,
-                        color: Colors.black
-                      ),);
-                    })),
+            Text("Old Latitude was $oldlatitude"),
+            Text("Old Latitude was $oldlongitude"),
+
+
+
+
           ],
         ),
       ),
