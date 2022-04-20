@@ -1,8 +1,11 @@
 import 'dart:async';
-import 'dart:math';
+import 'package:driver_app/MainScreens/main_screen.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import '../global/global.dart';
 
 class HomeTabPage extends StatefulWidget {
   const HomeTabPage({Key? key}) : super(key: key);
@@ -11,8 +14,26 @@ class HomeTabPage extends StatefulWidget {
   State<HomeTabPage> createState() => _HomeTabPageState();
 }
 
+
 class _HomeTabPageState extends State<HomeTabPage> {
 
+
+
+  Timer? timer;
+  int updater = 0;
+
+  @override
+  initState() {
+    super.initState();
+    timer = Timer.periodic(const Duration(seconds: 10), (Timer t) => locatePosition());
+  }
+
+  @override
+  void dispose() {
+    Fluttertoast.showToast(msg: "timer canceled");
+    timer?.cancel();
+    super.dispose();
+  }
 
 
   GoogleMapController? newGoogleMapController;
@@ -27,12 +48,25 @@ class _HomeTabPageState extends State<HomeTabPage> {
 
   //Getting current location
   locatePosition() async{
+    updater++;
     Position position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
     currentPosition = position;
 
     LatLng latlatPosition = LatLng(position.latitude, position.longitude);
 
-    log(position.latitude);
+    print("position latitude + "+ position.latitude.toString());
+    print("position longitude + "+ position.longitude.toString());
+
+    Map locationInfoMap = {
+      "latitude": position.latitude.toString().trim(),
+      "longitude": position.longitude.toString().trim(),
+    };
+
+    DatabaseReference driversRef = FirebaseDatabase.instance.ref().child("drivers");
+    driversRef.child(currentFirebaseUser!.uid).child("location_details").set(locationInfoMap).asStream();
+
+    Fluttertoast.showToast(msg: "location details has been saved " + updater.toString()  + " times");
+
 
 //Move camera to the current position
     CameraPosition cameraPosition = CameraPosition(target: latlatPosition,zoom: 14);
@@ -238,7 +272,15 @@ class _HomeTabPageState extends State<HomeTabPage> {
             //black theme google map
             blackThemeGoogleMap();
           },
-        )
+        ),
+        Center(
+          child: ElevatedButton(onPressed: (){
+            dispose();
+            Navigator.push(context, MaterialPageRoute(builder: (c)=>const MainScreen()));
+          }, child: Text("Switch off")),
+        ),
+
+
       ],
     );
   }

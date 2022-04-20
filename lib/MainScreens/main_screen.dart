@@ -4,6 +4,8 @@ import 'package:driver_app/tabPages/home_tab.dart';
 import 'package:driver_app/tabPages/profile_tab.dart';
 import 'package:driver_app/tabPages/rating_tab.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -28,6 +30,33 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
   void initState() {
     super.initState();
     tabController = TabController(length: 4, vsync: this);
+    askpermission();
+  }
+
+  askpermission() async {
+    if(await Permission.location.serviceStatus.isEnabled){
+      // location is enabled
+      Map<Permission, PermissionStatus> status1 = await[
+        Permission.location,
+      ].request();
+
+      var status = await Permission.location.status;
+      if(status.isGranted){
+        //location permission is given
+        Fluttertoast.showToast(msg: "location permission granted");
+      }
+      else if(status.isDenied){
+
+      }
+
+    }
+    else{
+      // permission is no enabled
+      Map<Permission, PermissionStatus> status = await[
+        Permission.location,
+      ].request();
+
+    }
   }
 
   @override
