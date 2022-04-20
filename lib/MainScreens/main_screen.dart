@@ -91,9 +91,9 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
               label: "Profile"
           ),
         ],
-        unselectedItemColor: Colors.white54,
+        unselectedItemColor: Colors.black,
         selectedItemColor: Colors.amber,
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.grey[100],
         type: BottomNavigationBarType.fixed,
         selectedLabelStyle: const TextStyle(fontSize: 14),
         showUnselectedLabels: true,

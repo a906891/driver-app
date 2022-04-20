@@ -16,6 +16,9 @@ class HomeSwitchOff extends StatefulWidget {
 
 class _HomeSwitchOffState extends State<HomeSwitchOff> {
 
+  bool pressed = false;
+  String switchState = "Switched Off";
+  String buttonText = "CLICK HERE TO START WORKING";
   String oldlatitude = "0";
   String oldlongitude = "0";
 
@@ -38,19 +41,64 @@ class _HomeSwitchOffState extends State<HomeSwitchOff> {
 
   }
 
+  changetext(){
+    String? s;
+    String? bs;
+
+    if(pressed)
+      {
+        pressed = false;
+        s = "Switched Off ";
+        bs= "CLICK HERE TO START WORKING";
+      }
+    else if(!pressed){
+      pressed = true;
+      s = "Switched ON";
+      bs= "CLICK HERE TO STOP WORKING";
+    }
+
+    setState(() {
+      switchState = s!;
+      buttonText = bs!;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+             Text(switchState,
+          style: pressed
+              ? const TextStyle(color: Colors.green,fontSize: 27)
+              : const TextStyle(color:Colors.red,fontSize: 27),
+            ),
+
+            const SizedBox(height: 50.0,),
+
             ElevatedButton(
                 onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (c) => const HomeTabPage()));
+                  changetext();
+                  Navigator.push(context, MaterialPageRoute(builder: (c) => const HomeTabPage()));
                 },
-                child: const Text("Switch On")),
+                style: ElevatedButton.styleFrom(
+
+                  primary: Colors.black,
+                  padding: const EdgeInsets.fromLTRB(40.0,20.0,40.0,20.0),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10), // <-- Radius
+                  ),
+                ),
+                child: Text(buttonText,
+                style: const TextStyle(
+                  fontSize: 15.0
+                ),)),
+
+            const SizedBox(height: 50.0,),
+
             ElevatedButton(onPressed: () {
                 getlocation();
             }, child: Text("Get Data from firebase")),
