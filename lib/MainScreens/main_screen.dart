@@ -40,8 +40,6 @@ class _MainScreenState extends State<MainScreen>
     askpermission();
   }
 
-
-
   getEmployeeProfileDataFromFirebase() async {
     DatabaseReference driversRef = FirebaseDatabase.instance
         .ref()
@@ -53,7 +51,6 @@ class _MainScreenState extends State<MainScreen>
     Map<String, dynamic> data = jsonDecode(jsonEncode(event.snapshot.value));
 
     setState(() async {
-
       employeeName = data['name'];
       employeeEmail = data['email'];
       employeePhone = data['phone'];
@@ -63,10 +60,8 @@ class _MainScreenState extends State<MainScreen>
       prefs.setString('EmployeeName', employeeName!);
       prefs.setString('EmployeeEmail', employeeEmail!);
       prefs.setString('EmployeePhone', employeePhone!);
-
     });
   }
-
 
   askpermission() async {
     if (await Permission.location.serviceStatus.isEnabled) {

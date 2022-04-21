@@ -1,8 +1,6 @@
 import 'package:driver_app/splashScreen/splash_screen.dart';
-import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../global/global.dart';
 
 class ProfileTabPage extends StatefulWidget {
