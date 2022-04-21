@@ -88,7 +88,7 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
           ),
           BottomNavigationBarItem(
               icon: Icon(Icons.person),
-              label: "Profile"
+              label: "Profile",
           ),
         ],
         unselectedItemColor: Colors.black,

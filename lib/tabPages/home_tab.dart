@@ -243,41 +243,70 @@ class _HomeTabPageState extends State<HomeTabPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        GoogleMap(
-          padding: EdgeInsets.only(top: topPaddingOfMap),
-          mapType: MapType.normal,
-          myLocationEnabled: true,
-          initialCameraPosition: _kGooglePlex,
-          //current location tools start
-          zoomGesturesEnabled: true,
-          myLocationButtonEnabled: true,
-          zoomControlsEnabled: false,
-          //end
-          onMapCreated: (GoogleMapController controller){
-            _controllergooglemap.complete(controller);
-            newGoogleMapController = controller;
+    return Material(
+      child: Stack(
+        children: [
+          GoogleMap(
+            padding: EdgeInsets.only(top: topPaddingOfMap),
+            mapType: MapType.normal,
+            myLocationEnabled: true,
+            initialCameraPosition: _kGooglePlex,
+            //current location tools start
+            zoomGesturesEnabled: true,
+            myLocationButtonEnabled: true,
+            zoomControlsEnabled: false,
+            //end
+            onMapCreated: (GoogleMapController controller){
+              _controllergooglemap.complete(controller);
+              newGoogleMapController = controller;
 
-            setState(() {
-              topPaddingOfMap = 60.0;
-            });
-            //Get the current position
-            locatePosition();
+              setState(() {
+                topPaddingOfMap = 60.0;
+              });
+              //Get the current position
+              locatePosition();
 
-            //black theme google map
-            blackThemeGoogleMap();
-          },
-        ),
-        Center(
-          child: ElevatedButton(onPressed: (){
-            dispose();
-            Navigator.push(context, MaterialPageRoute(builder: (c)=>const MainScreen()));
-          }, child: Text("Switch off")),
-        ),
+              //black theme google map
+              blackThemeGoogleMap();
+            },
+          ),
+
+          Container(
+            margin: const EdgeInsets.fromLTRB(0, 40.0, 0, 0),
+            alignment: Alignment.topCenter,
+            child: const Text("Switched ON",
+            style: TextStyle(
+              fontSize: 25,
+              color: Colors.lightGreenAccent,
+              fontWeight: FontWeight.bold,
+            ),),
+
+          ),
+
+          Container(
+            alignment: Alignment.bottomCenter,
+            margin:const EdgeInsets.fromLTRB(0, 0, 0, 20),
+            child: ElevatedButton(onPressed: (){
+              dispose();
+              Navigator.push(context, MaterialPageRoute(builder: (c)=>const MainScreen()));
+            }, child:const Text("CLICK HERE TO STOP WORKING",
+            style: TextStyle(
+              fontSize: 18
+            ),),
+              style: ElevatedButton.styleFrom(
+
+                primary: Colors.black,
+                padding: const EdgeInsets.fromLTRB(40.0,20.0,40.0,20.0),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10), // <-- Radius
+                ),
+              ),),
+          ),
 
 
-      ],
+
+        ],
+      ),
     );
   }
 }
