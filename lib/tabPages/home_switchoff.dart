@@ -22,6 +22,7 @@ class _HomeSwitchOffState extends State<HomeSwitchOff> {
   String oldlatitude = "0";
   String oldlongitude = "0";
 
+
   DatabaseReference driversRef = FirebaseDatabase.instance.ref().child("drivers").
   child(currentFirebaseUser!.uid).child("location_details");
 

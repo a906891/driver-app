@@ -46,6 +46,7 @@ class _HomeTabPageState extends State<HomeTabPage> {
 
 
 
+
   //Getting current location
   locatePosition() async{
     updater++;
