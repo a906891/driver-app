@@ -34,8 +34,6 @@ class _HomeTabPageState extends State<HomeTabPage> {
     timer?.cancel();
     super.dispose();
   }
-
-
   GoogleMapController? newGoogleMapController;
 
   final Completer<GoogleMapController> _controllergooglemap = Completer();

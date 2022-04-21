@@ -1,8 +1,7 @@
-import 'dart:convert';
-
 import 'package:driver_app/splashScreen/splash_screen.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../global/global.dart';
 
@@ -15,35 +14,26 @@ class ProfileTabPage extends StatefulWidget {
 
 
 class _ProfileTabPageState extends State<ProfileTabPage> {
-  String? adminName = "";
-  String? adminOccupation = "";
-  String? adminEmail = "";
-  String? adminPhone = "";
 
+  String? employeeName = "";
+  String? employeeEmail = "";
+  String? employeePhone = "";
 
   @override
   void initState() {
     super.initState();
-    getEmployeeProfileData();
+    getEmployeeDataFromPhone();
   }
 
-  getEmployeeProfileData() async {
-    DatabaseReference driversRef = FirebaseDatabase.instance.ref().child("drivers").
-    child(currentFirebaseUser!.uid);
-
-    DatabaseEvent event = await driversRef.once();
-
-    Map<String,dynamic> data = jsonDecode(jsonEncode(event.snapshot.value));
+  getEmployeeDataFromPhone() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
 
     setState(() {
-      adminName = data['name'];
-      adminOccupation = data[''];
-      adminEmail = data['email'];
-      adminPhone = data['phone'];
+      employeeName = prefs.getString('EmployeeName');
+      employeeEmail = prefs.getString('EmployeeEmail');
+      employeePhone = prefs.getString('EmployeePhone');
     });
-
   }
-
 
 
 
@@ -75,7 +65,7 @@ class _ProfileTabPageState extends State<ProfileTabPage> {
                 height: 90.0,
               ),
               Text(
-                "Name: $adminName",
+                "Name: $employeeName",
                 style: const TextStyle(fontSize: 20),
               ),
               const SizedBox(
@@ -83,14 +73,14 @@ class _ProfileTabPageState extends State<ProfileTabPage> {
               ),
 
               Text(
-                "Email: $adminEmail",
+                "Email: $employeeEmail",
                 style: const TextStyle(fontSize: 20),
               ),
               const SizedBox(
                 height: 50.0,
               ),
               Text(
-                "Phone: $adminPhone",
+                "Phone: $employeePhone",
                 style: const TextStyle(fontSize: 20),
               ),
               const SizedBox(
