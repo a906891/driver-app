@@ -1,3 +1,4 @@
+import 'package:driver_app/MainScreens/main_screen.dart';
 import 'package:driver_app/authentication/car_info_screen.dart';
 import 'package:driver_app/authentication/login_screen.dart';
 import 'package:driver_app/widgets/progress_dialog.dart';
@@ -72,7 +73,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
         currentFirebaseUser = firebaseUser;
         Fluttertoast.showToast(msg: "Account has been created");
-        Navigator.push(context, MaterialPageRoute(builder: (c)=> CarInfoScreen()));
+        Navigator.push(context, MaterialPageRoute(builder: (c)=> const MainScreen()));
 
       }
       else{

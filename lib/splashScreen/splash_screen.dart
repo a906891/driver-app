@@ -16,7 +16,7 @@ class _MySplashScreenState extends State<MySplashScreen> {
   startTimer() {
     Timer(const Duration(seconds: 2), () async {
       //Checks if the user is logged in first
-      if (await fAuth.currentUser != null) {
+      if (fAuth.currentUser != null) {
         currentFirebaseUser = fAuth.currentUser;
         Navigator.push(
             context, MaterialPageRoute(builder: (c) => MainScreen()));

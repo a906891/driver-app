@@ -2,6 +2,7 @@ import 'package:driver_app/MainScreens/main_screen.dart';
 import 'package:driver_app/authentication/signup_screen.dart';
 import 'package:driver_app/splashScreen/splash_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -51,9 +52,24 @@ class _LoginScreenState extends State<LoginScreen> {
 // getting data to be saved after creating user
     if(firebaseUser != null){
 
-      currentFirebaseUser = firebaseUser;
-      Fluttertoast.showToast(msg: "Login Successful");
-      Navigator.push(context, MaterialPageRoute(builder: (c)=>const MySplashScreen()));
+      //check that only drivers can login not the user
+      DatabaseReference driversRef = FirebaseDatabase.instance.ref().child("drivers");
+      driversRef.child(firebaseUser.uid).once().then((driverkey){
+
+        //takes the snapshot of key of driver and check if it is valid then only it can login
+        final snap = driverkey.snapshot;
+        if(snap.value != null){
+          currentFirebaseUser = firebaseUser;
+          Fluttertoast.showToast(msg: "Login Successful");
+          Navigator.push(context, MaterialPageRoute(builder: (c)=>const MySplashScreen()));
+        }
+        else{
+          Fluttertoast.showToast(msg: "No record exist with this email");
+          fAuth.signOut();
+          Navigator.push(context, MaterialPageRoute(builder: (c)=>const MySplashScreen()));
+        }
+      });
+
 
     }
     else{

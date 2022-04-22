@@ -39,7 +39,7 @@ class _HomeTabPageState extends State<HomeTabPage> {
   final Completer<GoogleMapController> _controllergooglemap = Completer();
 
   Position? currentPosition;
-  var geoLocator = Geolocator();
+
   double topPaddingOfMap = 0;
 
 
@@ -50,6 +50,7 @@ class _HomeTabPageState extends State<HomeTabPage> {
     updater++;
     Position position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
     currentPosition = position;
+
 
     LatLng latlatPosition = LatLng(position.latitude, position.longitude);
 
