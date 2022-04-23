@@ -95,11 +95,12 @@ class _MainScreenState extends State<MainScreen>
           ProfileTabPage()
         ],
       ),
+
       bottomNavigationBar: BottomNavigationBar(
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
           BottomNavigationBarItem(
-              icon: Icon(Icons.credit_card), label: "Earnings"),
+              icon: Icon(Icons.credit_card), label: "Form"),
           BottomNavigationBarItem(
               icon: Icon(Icons.star_rate), label: "Ratings"),
           BottomNavigationBarItem(

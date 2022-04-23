@@ -1,4 +1,3 @@
-import 'package:driver_app/MainScreens/main_screen.dart';
 import 'package:driver_app/authentication/signup_screen.dart';
 import 'package:driver_app/splashScreen/splash_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -6,7 +5,6 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-
 import '../global/global.dart';
 import '../widgets/progress_dialog.dart';
 
@@ -78,8 +76,6 @@ class _LoginScreenState extends State<LoginScreen> {
     }
 
   }
-
-
 
 
   @override
