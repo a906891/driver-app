@@ -26,7 +26,7 @@ class _FormTabPageState extends State<FormTabPage> {
 
             const SizedBox(height: 15.0,),
 
-            const Text("Name",style: TextStyle(fontSize: 15.0,fontFamily: 'Montserrat-Black'),),
+            const Text("Name",style: TextStyle(fontSize: 15.0),),
 
             const SizedBox(height: 15.0,),
 
