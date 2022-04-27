@@ -92,6 +92,9 @@ flutter:
      - family: Righteous
        fonts:
          - asset: assets/Righteous.ttf
+     - family: Montserrat-Black
+       fonts:
+         - asset: assets/Montserrat-Black.ttf
   #   - family: Schyler
   #     fonts:
   #       - asset: fonts/Schyler-Regular.ttf

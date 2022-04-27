@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:driver_app/tabPages/earning_tab.dart';
+import 'package:driver_app/tabPages/form_tab.dart';
 import 'package:driver_app/tabPages/home_switchoff.dart';
 import 'package:driver_app/tabPages/profile_tab.dart';
 import 'package:driver_app/tabPages/rating_tab.dart';
@@ -90,7 +90,7 @@ class _MainScreenState extends State<MainScreen>
         controller: tabController,
         children: const [
           HomeSwitchOff(),
-          EarningTabPage(),
+          FormTabPage(),
           RatingTabPage(),
           ProfileTabPage()
         ],
