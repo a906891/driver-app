@@ -43,7 +43,7 @@ dependencies:
   location: ^4.3.0
   permission_handler: ^9.2.0
   shared_preferences: ^2.0.13
-
+  graphql_flutter: ^5.0.1
 
 
 

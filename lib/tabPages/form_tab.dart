@@ -15,6 +15,13 @@ class _FormTabPageState extends State<FormTabPage> {
   TextEditingController secondphoneEditableController = TextEditingController();
   TextEditingController thirdphoneEditableController = TextEditingController();
   TextEditingController emailEditableController = TextEditingController();
+  TextEditingController yearStartedEditableController = TextEditingController();
+  TextEditingController descriptionEditableController = TextEditingController();
+  TextEditingController videoEditableController = TextEditingController();
+  TextEditingController remarkEditableController = TextEditingController();
+  TextEditingController servicesEditableController = TextEditingController();
+  TextEditingController facilitiesEditableController = TextEditingController();
+  TextEditingController experienceEditableController = TextEditingController();
 
   double spaceBetweenTextAndField = 5.0;
   double spaceAbovepair = 15.0;
@@ -178,7 +185,7 @@ class _FormTabPageState extends State<FormTabPage> {
             Container(
               height: 55.0,
               child: TextField(
-                controller: phoneEditableController,
+                controller: yearStartedEditableController,
                 keyboardType: TextInputType.phone,
                 style: const TextStyle(color: Colors.black,fontSize: 18),
                 decoration: InputDecoration(
@@ -207,7 +214,7 @@ class _FormTabPageState extends State<FormTabPage> {
             Container(
               height: 55.0,
               child: TextField(
-                controller: phoneEditableController,
+                controller: descriptionEditableController,
                 keyboardType: TextInputType.phone,
                 style: const TextStyle(color: Colors.black,fontSize: 18),
                 decoration: InputDecoration(
@@ -236,7 +243,7 @@ class _FormTabPageState extends State<FormTabPage> {
             Container(
               height: 55.0,
               child: TextField(
-                controller: phoneEditableController,
+                controller: videoEditableController,
                 keyboardType: TextInputType.phone,
                 style: const TextStyle(color: Colors.black,fontSize: 18),
                 decoration: InputDecoration(
@@ -264,7 +271,7 @@ class _FormTabPageState extends State<FormTabPage> {
             Container(
               height: 55.0,
               child: TextField(
-                controller: phoneEditableController,
+                controller: remarkEditableController,
                 keyboardType: TextInputType.phone,
                 style: const TextStyle(color: Colors.black,fontSize: 18),
                 decoration: InputDecoration(
@@ -297,7 +304,7 @@ class _FormTabPageState extends State<FormTabPage> {
             Container(
               height: 55.0,
               child: TextField(
-                controller: phoneEditableController,
+                controller: servicesEditableController,
                 keyboardType: TextInputType.phone,
                 style: const TextStyle(color: Colors.black,fontSize: 18),
                 decoration: InputDecoration(
@@ -325,7 +332,7 @@ class _FormTabPageState extends State<FormTabPage> {
             Container(
               height: 55.0,
               child: TextField(
-                controller: phoneEditableController,
+                controller: facilitiesEditableController,
                 keyboardType: TextInputType.phone,
                 style: const TextStyle(color: Colors.black,fontSize: 18),
                 decoration: InputDecoration(
@@ -353,7 +360,7 @@ class _FormTabPageState extends State<FormTabPage> {
             Container(
               height: 55.0,
               child: TextField(
-                controller: phoneEditableController,
+                controller: experienceEditableController,
                 keyboardType: TextInputType.phone,
                 style: const TextStyle(color: Colors.black,fontSize: 18),
                 decoration: InputDecoration(
