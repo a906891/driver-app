@@ -1,6 +1,5 @@
 
 class StoreCountriesModel{
-
   int? count;
   int? page;
   int? pageSize;
@@ -39,9 +38,6 @@ class StoreCountries{
     user =
         json['user'] != null ? User.fromJson(json['user']) : null;
   }
-
-
-
 }
 
 class Country{
@@ -82,7 +78,6 @@ class Country{
 
     return data;
   }
-
 }
 
 
@@ -109,5 +104,4 @@ class User{
     data['email'] = this.email;
     return data;
 }
-
 }

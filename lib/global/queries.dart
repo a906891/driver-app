@@ -1,7 +1,5 @@
 class Queries{
 
-  final String defaultStoreId = "62347567367d4bd1e090c208";
-
   final String storeCountries = '''
   query storeCountries(\$page: Int, \$search: String, \$limit: Int, \$sort: String, \$store: ID!) {
   storeCountries(
