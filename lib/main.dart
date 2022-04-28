@@ -12,7 +12,7 @@ void main() async {
         title: 'Drivers App',
         theme: ThemeData(
           //customized default font theme
-          fontFamily: 'Montserrat-Black',
+          fontFamily: 'Montserrat-Medium',
           primarySwatch: Colors.blue,
         ),
         home: const MySplashScreen(),
