@@ -21,7 +21,7 @@ class StoreCountriesModel{
 }
 
 class StoreCountries{
-  int? id;
+  String? id;
   bool? isDefault;
   bool? active;
   Country? country;
@@ -41,7 +41,7 @@ class StoreCountries{
 }
 
 class Country{
-  int? id;
+  String? id;
   String? name;
   String? value;
   String? dialCode;
@@ -82,7 +82,7 @@ class Country{
 
 
 class User{
-  int? id;
+  String? id;
   String? firstName;
   String? lastName;
   String? email;

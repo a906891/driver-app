@@ -1,3 +1,4 @@
+import 'package:driver_app/tabPages/form/form_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -26,6 +27,15 @@ class _FormTabPageState extends State<FormTabPage> {
   double spaceBetweenTextAndField = 5.0;
   double spaceAbovepair = 15.0;
 
+  FormService formService = FormService();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    var result =  formService.getStoreCountries();
+    print("result $result");
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +49,8 @@ class _FormTabPageState extends State<FormTabPage> {
             const Text("Basic Information",style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold),),
 
             // Countires come here
+
+
 
 //Name
             SizedBox(height: spaceAbovepair,),
