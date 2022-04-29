@@ -1,9 +1,12 @@
 import 'package:driver_app/tabPages/form/form_service.dart';
+import 'package:driver_app/tabPages/form/models/store_countries/store_countries_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class FormTabPage extends StatefulWidget {
   const FormTabPage({Key? key}) : super(key: key);
+
 
   @override
   State<FormTabPage> createState() => _FormTabPageState();
@@ -28,12 +31,13 @@ class _FormTabPageState extends State<FormTabPage> {
   double spaceAbovepair = 15.0;
 
   FormService formService = FormService();
+  StoreCountriesModel storeCountriesModel = StoreCountriesModel();
+
 
   @override
   void initState() {
     // TODO: implement initState
-    var result =  formService.getStoreCountries();
-    print("result $result");
+    formService.getStoreCountries();
     super.initState();
   }
 
@@ -49,6 +53,8 @@ class _FormTabPageState extends State<FormTabPage> {
             const Text("Basic Information",style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold),),
 
             // Countires come here
+
+
 
 
 

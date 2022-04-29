@@ -49,14 +49,15 @@ class _MainScreenState extends State<MainScreen>
     DatabaseEvent event = await driversRef.once();
 
     Map<String, dynamic> data = jsonDecode(jsonEncode(event.snapshot.value));
+    SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    setState(() async {
+    setState(() {
       employeeName = data['name'];
       employeeEmail = data['email'];
       employeePhone = data['phone'];
 
       //Data saved to phone
-      SharedPreferences prefs = await SharedPreferences.getInstance();
+
       prefs.setString('EmployeeName', employeeName!);
       prefs.setString('EmployeeEmail', employeeEmail!);
       prefs.setString('EmployeePhone', employeePhone!);

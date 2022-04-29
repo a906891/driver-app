@@ -80,7 +80,6 @@ class Country{
   }
 }
 
-
 class User{
   String? id;
   String? firstName;
