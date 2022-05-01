@@ -14,13 +14,12 @@ class HomeTabPage extends StatefulWidget {
   State<HomeTabPage> createState() => _HomeTabPageState();
 }
 
-
 class _HomeTabPageState extends State<HomeTabPage> {
-
-
 
   Timer? timer;
   int updater = 0;
+
+
 
   @override
   initState() {
@@ -41,8 +40,6 @@ class _HomeTabPageState extends State<HomeTabPage> {
   Position? currentPosition;
 
   double topPaddingOfMap = 0;
-
-
 
 
   //Getting current location

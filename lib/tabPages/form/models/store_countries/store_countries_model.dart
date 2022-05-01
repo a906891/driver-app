@@ -1,14 +1,18 @@
 
-class StoreCountriesModel{
-  int? count;
-  int? page;
-  int? pageSize;
+
+class StoreCountriesModel {
+  int? count ;
+  int? page ;
+  int? pageSize ;
   List<StoreCountries>? data;
+
 
   StoreCountriesModel({this.count,this.page,this.pageSize,this.data});
 
   StoreCountriesModel.fromJson(Map<String,dynamic> json){
+
     count = json['count'];
+    print(json['count']);
     page = json['page'];
     pageSize = json['pageSize'];
     if(json['data'] != null){
@@ -20,23 +24,25 @@ class StoreCountriesModel{
   }
 }
 
-class StoreCountries{
+class StoreCountries {
   String? id;
   bool? isDefault;
   bool? active;
-  Country? country;
-  User? user;
+  Country? country ;
+  User? user ;
 
-  StoreCountries({this.id,this.isDefault,this.active,this.country,this.user});
+
+  StoreCountries({ this.id, this.isDefault,
+     this.active, this.country, this.user});
 
   StoreCountries.fromJson(Map<String,dynamic> json){
     id = json['id'];
     isDefault = json['isDefault'];
     active = json['active'];
     country =
-        json['country'] != null ? Country.fromJson(json['country']) : null;
+        json['country'] != null ? Country.fromJson(json['country']) : null ;
     user =
-        json['user'] != null ? User.fromJson(json['user']) : null;
+        json['user'] != null ? User.fromJson(json['user']) : null ;
   }
 }
 

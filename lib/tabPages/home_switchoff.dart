@@ -6,12 +6,16 @@ import 'package:fluttertoast/fluttertoast.dart';
 import '../global/global.dart';
 import 'package:location/location.dart';
 
+import 'form/service/form_service.dart';
+
 class HomeSwitchOff extends StatefulWidget {
   const HomeSwitchOff({Key? key}) : super(key: key);
 
-  @override
-  State<HomeSwitchOff> createState() => _HomeSwitchOffState();
-}
+    @override
+    State<HomeSwitchOff> createState() => _HomeSwitchOffState();
+  }
+
+
 
 
 class _HomeSwitchOffState extends State<HomeSwitchOff> {
@@ -21,6 +25,7 @@ class _HomeSwitchOffState extends State<HomeSwitchOff> {
   String buttonText = "CLICK HERE TO START WORKING";
   String oldlatitude = "0";
   String oldlongitude = "0";
+
 
 
   DatabaseReference driversRef = FirebaseDatabase.instance.ref().child("drivers").
