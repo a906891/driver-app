@@ -14,6 +14,8 @@ class FormTabPage extends StatefulWidget {
       child: const FormTabPage());
   }
 
+  static List<String>? countrynames ;
+
   @override
   State<FormTabPage> createState() => _FormTabPageState();
 }
@@ -45,11 +47,13 @@ class _FormTabPageState extends State<FormTabPage> {
 
   var items = [
     'Item 1',
-    'Item 2',
-    'Item 3',
-    'Item 4',
-    'Item 5',
+    'Country 2',
+    'Country 3',
+    'Country 4',
+    'Country 5',
   ];
+
+  List? list;
 
 
   @override
@@ -69,6 +73,15 @@ class _FormTabPageState extends State<FormTabPage> {
                   ),
 
                   // Countires come here
+
+
+                  Text("count ${state.storeCountriesModel.count}"),
+                  Text("pageSize ${state.storeCountriesModel.pageSize}"),
+                  Text("page ${state.storeCountriesModel.page}"),
+                  SizedBox(
+                    height: spaceAbovepair,
+                  ),
+
                   SizedBox(
                     width: 400.0,
                     child: DropdownButton(
@@ -83,8 +96,7 @@ class _FormTabPageState extends State<FormTabPage> {
                           child: Text(items),
                         );
                       }).toList(),
-                      // After selecting the desired option,it will
-                      // change button value to selected value
+
                       onChanged: (String? newValue) {
                         setState(() {
                           dropdownvalue = newValue!;
@@ -93,15 +105,7 @@ class _FormTabPageState extends State<FormTabPage> {
                     ),
                   ),
 
-                  Text("count ${state.storeCountriesModel.count}"),
-                  Text("pageSize ${state.storeCountriesModel.pageSize}"),
-                  Text("page ${state.storeCountriesModel.page}"),
-                  SizedBox(
-                    height: spaceAbovepair,
-                  ),
-
-
-                  Text("data ${state.storeCountriesModel.data![""]}"),
+                  Text("data ${state.storeCountriesModel.data}"),
 
                   SizedBox(
                     height: spaceAbovepair,
