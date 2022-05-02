@@ -6,20 +6,7 @@ import 'package:flutter/material.dart';
 class FormItem extends StatelessWidget {
   final StoreCountries storeCountries;
 
-
   FormItem({Key? key,required this.storeCountries}) : super(key: key);
-
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    var a = storeCountries.country?.name;
-    FormTabPage.countrynames?.add(a!);
-    print("Added to list");
-    print(FormTabPage.countrynames);
-  }
-
-
 
   @override
   Widget build(BuildContext context) {

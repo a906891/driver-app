@@ -71,6 +71,8 @@ class Country{
     flag = json['flag'];
     lang = json['lang'];
 
+    print("country $name");
+
   }
 
   Map<String,dynamic> toJson(){

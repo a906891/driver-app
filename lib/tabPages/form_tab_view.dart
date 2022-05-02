@@ -37,12 +37,20 @@ class _FormTabPageState extends State<FormTabPage> {
   double spaceBetweenTextAndField = 5.0;
   double spaceAbovepair = 15.0;
 
+  var mapsInTheHouse1 = {0:"Abhiraj", 1:"Tanu" , 2 : "Hello" };
+
+  var mapsInTheHouse2  = {};
+
 
   @override
   void initState() {
     // TODO: implement initState
+    mapsInTheHouse2[0] = "Abhiraj2";
+    mapsInTheHouse2[1] = "Tanu2";
+    mapsInTheHouse2[2] = "Hello2";
     super.initState();
   }
+
   String dropdownvalue = 'Item 1';
 
   var items = [
@@ -73,6 +81,12 @@ class _FormTabPageState extends State<FormTabPage> {
                   ),
 
                   // Countires come here
+                  ElevatedButton(
+                      onPressed: (){
+                      },
+                      child: Text("Add to Map")),
+
+                  Text(mapsInTheHouse2.values.toString()),
 
 
                   Text("count ${state.storeCountriesModel.count}"),
@@ -105,18 +119,18 @@ class _FormTabPageState extends State<FormTabPage> {
                     ),
                   ),
 
-                  Text("data ${state.storeCountriesModel.data}"),
 
                   SizedBox(
                     height: spaceAbovepair,
                   ),
 
 
+
                   ...state.storeCountriesModel.data!.map(
                           (storeCountries) => FormItem(storeCountries: storeCountries)
                   ).toList(),
 
-//Name
+
 
                   SizedBox(
                     height: spaceAbovepair,
@@ -130,8 +144,6 @@ class _FormTabPageState extends State<FormTabPage> {
                   SizedBox(
                     height: spaceBetweenTextAndField,
                   ),
-
-
 
                   SizedBox(
                     height: 55.0,
