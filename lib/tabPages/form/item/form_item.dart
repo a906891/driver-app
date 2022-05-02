@@ -6,10 +6,19 @@ import 'package:flutter/material.dart';
 class FormItem extends StatelessWidget {
   final StoreCountries storeCountries;
 
+
   FormItem({Key? key,required this.storeCountries}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+
+    // adding in map if it does not have same country
+    if(!FormTabPage.names.containsValue(storeCountries.country?.name))
+      {
+        FormTabPage.names[FormTabPage.a] = storeCountries.country?.name;
+        FormTabPage.a++;
+        print("Added to list");
+      }
 
     return Center(
       child: Column(
@@ -30,5 +39,8 @@ class FormItem extends StatelessWidget {
     );
   }
 }
+
+
+
 
 

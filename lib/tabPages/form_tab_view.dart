@@ -14,7 +14,9 @@ class FormTabPage extends StatefulWidget {
       child: const FormTabPage());
   }
 
-  static List<String>? countrynames ;
+  static var names = {};
+  static var a = 0;
+
 
   @override
   State<FormTabPage> createState() => _FormTabPageState();
@@ -37,31 +39,8 @@ class _FormTabPageState extends State<FormTabPage> {
   double spaceBetweenTextAndField = 5.0;
   double spaceAbovepair = 15.0;
 
-  var mapsInTheHouse1 = {0:"Abhiraj", 1:"Tanu" , 2 : "Hello" };
+  var selectedCountry;
 
-  var mapsInTheHouse2  = {};
-
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    mapsInTheHouse2[0] = "Abhiraj2";
-    mapsInTheHouse2[1] = "Tanu2";
-    mapsInTheHouse2[2] = "Hello2";
-    super.initState();
-  }
-
-  String dropdownvalue = 'Item 1';
-
-  var items = [
-    'Item 1',
-    'Country 2',
-    'Country 3',
-    'Country 4',
-    'Country 5',
-  ];
-
-  List? list;
 
 
   @override
@@ -86,12 +65,18 @@ class _FormTabPageState extends State<FormTabPage> {
                       },
                       child: Text("Add to Map")),
 
-                  Text(mapsInTheHouse2.values.toString()),
+                  ListView.builder(
+                      itemBuilder: (context,index){
+                        return ListTile(
+                          title: Text(FormTabPage.names[index]),
+                        );
+                      },
+                    itemCount: FormTabPage.names.length,
+                    shrinkWrap: true,
+                    physics: NeverScrollableScrollPhysics(),
+                  ),
 
 
-                  Text("count ${state.storeCountriesModel.count}"),
-                  Text("pageSize ${state.storeCountriesModel.pageSize}"),
-                  Text("page ${state.storeCountriesModel.page}"),
                   SizedBox(
                     height: spaceAbovepair,
                   ),
@@ -100,20 +85,21 @@ class _FormTabPageState extends State<FormTabPage> {
                     width: 400.0,
                     child: DropdownButton(
                       // Initial Value
-                      value: dropdownvalue,
+                      value: selectedCountry,
                       // Down Arrow Icon
                       icon: const Icon(Icons.keyboard_arrow_down),
                       // Array list of items
-                      items: items.map((String items) {
+                      items: FormTabPage.names.values.map((var items) {
                         return DropdownMenuItem(
                           value: items,
                           child: Text(items),
                         );
                       }).toList(),
 
-                      onChanged: (String? newValue) {
+                      onChanged: (var newValue) {
                         setState(() {
-                          dropdownvalue = newValue!;
+                          selectedCountry = newValue;
+                          print(selectedCountry);
                         });
                       },
                     ),
