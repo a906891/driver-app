@@ -2,9 +2,7 @@ import 'package:driver_app/tabPages/form/models/store_countries/store_countries_
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get.dart';
 import 'package:driver_app/tabPages/form/bloc/form_bloc.dart';
-
 import 'form/item/form_item.dart';
 
 class FormTabPage extends StatefulWidget {
@@ -38,11 +36,11 @@ class _FormTabPageState extends State<FormTabPage> {
   double spaceAbovepair = 15.0;
 
 
-  final StoreCountriesModel storeCountriesModel =
-      Get.put(StoreCountriesModel());
-
-
-
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
   String dropdownvalue = 'Item 1';
 
   var items = [
@@ -52,12 +50,6 @@ class _FormTabPageState extends State<FormTabPage> {
     'Item 4',
     'Item 5',
   ];
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-  }
 
 
   @override
@@ -77,8 +69,7 @@ class _FormTabPageState extends State<FormTabPage> {
                   ),
 
                   // Countires come here
-
-                  Container(
+                  SizedBox(
                     width: 400.0,
                     child: DropdownButton(
                       // Initial Value
@@ -102,10 +93,19 @@ class _FormTabPageState extends State<FormTabPage> {
                     ),
                   ),
 
-                  Obx(()=> Text("count + ${storeCountriesModel.count}")),
+                  Text("count ${state.storeCountriesModel.count}"),
+                  Text("pageSize ${state.storeCountriesModel.pageSize}"),
+                  Text("page ${state.storeCountriesModel.page}"),
+                  Text("data ${state.storeCountriesModel.data!.map((storeCountries) => FormItem(storeCountries: storeCountries))}"),
+
+                  SizedBox(
+                    height: spaceAbovepair,
+                  ),
 
 
-                  ...state.storeCountriesModel.data!.map((storeCountriesModel) => FormItem(storeCountriesModel: storeCountriesModel)).toList(),
+                  ...state.storeCountriesModel.data!.map(
+                          (storeCountries) => FormItem(storeCountries: storeCountries)
+                  ).toList(),
 
 //Name
                   SizedBox(
@@ -121,7 +121,7 @@ class _FormTabPageState extends State<FormTabPage> {
                     height: spaceBetweenTextAndField,
                   ),
 
-                  Container(
+                  SizedBox(
                     height: 55.0,
                     child: TextField(
                       controller: nameEditableController,
@@ -156,7 +156,7 @@ class _FormTabPageState extends State<FormTabPage> {
                     height: spaceBetweenTextAndField,
                   ),
 
-                  Container(
+                  SizedBox(
                     height: 55.0,
                     child: TextField(
                       controller: phoneEditableController,
@@ -189,7 +189,7 @@ class _FormTabPageState extends State<FormTabPage> {
                     height: spaceBetweenTextAndField,
                   ),
 
-                  Container(
+                  SizedBox(
                     height: 55.0,
                     child: TextField(
                       controller: secondphoneEditableController,
@@ -222,7 +222,7 @@ class _FormTabPageState extends State<FormTabPage> {
                     height: spaceBetweenTextAndField,
                   ),
 
-                  Container(
+                  SizedBox(
                     height: 55.0,
                     child: TextField(
                       controller: thirdphoneEditableController,
@@ -255,7 +255,7 @@ class _FormTabPageState extends State<FormTabPage> {
                     height: spaceBetweenTextAndField,
                   ),
 
-                  Container(
+                  SizedBox(
                     height: 55.0,
                     child: TextField(
                       controller: emailEditableController,
@@ -289,7 +289,7 @@ class _FormTabPageState extends State<FormTabPage> {
                     height: spaceBetweenTextAndField,
                   ),
 
-                  Container(
+                  SizedBox(
                     height: 55.0,
                     child: TextField(
                       controller: yearStartedEditableController,
@@ -323,7 +323,7 @@ class _FormTabPageState extends State<FormTabPage> {
                     height: spaceBetweenTextAndField,
                   ),
 
-                  Container(
+                  SizedBox(
                     height: 55.0,
                     child: TextField(
                       controller: descriptionEditableController,
@@ -357,7 +357,7 @@ class _FormTabPageState extends State<FormTabPage> {
                     height: spaceBetweenTextAndField,
                   ),
 
-                  Container(
+                  SizedBox(
                     height: 55.0,
                     child: TextField(
                       controller: videoEditableController,
@@ -391,7 +391,7 @@ class _FormTabPageState extends State<FormTabPage> {
                     height: spaceBetweenTextAndField,
                   ),
 
-                  Container(
+                  SizedBox(
                     height: 55.0,
                     child: TextField(
                       controller: remarkEditableController,
@@ -435,7 +435,7 @@ class _FormTabPageState extends State<FormTabPage> {
                     height: spaceBetweenTextAndField,
                   ),
 
-                  Container(
+                  SizedBox(
                     height: 55.0,
                     child: TextField(
                       controller: servicesEditableController,
@@ -469,7 +469,7 @@ class _FormTabPageState extends State<FormTabPage> {
                     height: spaceBetweenTextAndField,
                   ),
 
-                  Container(
+                  SizedBox(
                     height: 55.0,
                     child: TextField(
                       controller: facilitiesEditableController,
@@ -503,7 +503,7 @@ class _FormTabPageState extends State<FormTabPage> {
                     height: spaceBetweenTextAndField,
                   ),
 
-                  Container(
+                   SizedBox(
                     height: 55.0,
                     child: TextField(
                       controller: experienceEditableController,
@@ -526,11 +526,19 @@ class _FormTabPageState extends State<FormTabPage> {
                   const SizedBox(
                     height: 20,
                   ),
+
+                  Center(
+                    child: ElevatedButton(
+                        onPressed: (){
+
+                        },
+                        child: Text("Save")),
+                  )
                 ],
               ),
             );}
           return const Center(
-            child: Text("Loading View")
+            child: Text("Loading Form ")
           );
         },
         ),

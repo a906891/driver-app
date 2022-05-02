@@ -89,9 +89,9 @@ class _MainScreenState extends State<MainScreen>
       body: TabBarView(
         physics: NeverScrollableScrollPhysics(),
         controller: tabController,
-        children: const [
+        children: [
           HomeSwitchOff(),
-          FormTabPage(),
+          FormTabPage.providedInstance(),
           RatingTabPage(),
           ProfileTabPage()
         ],

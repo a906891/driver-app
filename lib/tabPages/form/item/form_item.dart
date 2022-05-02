@@ -1,24 +1,37 @@
-
-
+import 'package:driver_app/tabPages/form/data_list.dart';
 import 'package:driver_app/tabPages/form/models/store_countries/store_countries_model.dart';
 import 'package:flutter/material.dart';
 
 class FormItem extends StatelessWidget {
-  final StoreCountriesModel storeCountriesModel;
+  final StoreCountries storeCountries;
 
-  const FormItem({Key? key,required this.storeCountriesModel}) : super(key: key);
+
+  FormItem({Key? key,required this.storeCountries}) : super(key: key);
+  late DataList dataList;
+
 
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-              Text("count from store ${storeCountriesModel.count}"),
-          ],
 
-    )
+    return Center(
+      child: Column(
+        children: [
+
+          Text("count from store ${storeCountries.country?.name}"),
+
+          Text("count from store ${storeCountries.country?.dialCode}"),
+
+          Text("count from store ${storeCountries.user?.firstName}"),
+
+          const SizedBox(
+            height: 15.0,
+          ),
+        ],
+
+      ),
     );
   }
 }
+
+

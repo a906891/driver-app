@@ -33,7 +33,7 @@ class StoreCountries {
 
 
   StoreCountries({ this.id, this.isDefault,
-     this.active, this.country, this.user});
+     this.active, this.country, this.user });
 
   StoreCountries.fromJson(Map<String,dynamic> json){
     id = json['id'];
@@ -43,6 +43,7 @@ class StoreCountries {
         json['country'] != null ? Country.fromJson(json['country']) : null ;
     user =
         json['user'] != null ? User.fromJson(json['user']) : null ;
+
   }
 }
 
@@ -69,6 +70,7 @@ class Country{
     imgCdn = json['imgCdn'];
     flag = json['flag'];
     lang = json['lang'];
+
   }
 
   Map<String,dynamic> toJson(){
