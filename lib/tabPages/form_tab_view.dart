@@ -1,4 +1,4 @@
-import 'package:driver_app/tabPages/form/models/store_countries/store_countries_model.dart';
+import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,20 +8,26 @@ import 'form/item/form_item.dart';
 class FormTabPage extends StatefulWidget {
   const FormTabPage({Key? key}) : super(key: key);
 
+
   static Widget providedInstance(){
+
     return BlocProvider(
       create: (context)=> FormBloc()..add(FormEvent()),
       child: const FormTabPage());
   }
 
-  static var names = {};
-  static var a = 0;
+
+
 
   @override
   State<FormTabPage> createState() => _FormTabPageState();
 }
 
 class _FormTabPageState extends State<FormTabPage> {
+
+
+  Timer? timer;
+
   TextEditingController nameEditableController = TextEditingController();
   TextEditingController phoneEditableController = TextEditingController();
   TextEditingController secondphoneEditableController = TextEditingController();
@@ -39,17 +45,16 @@ class _FormTabPageState extends State<FormTabPage> {
   double spaceAbovepair = 15.0;
 
   var selectedCountry;
-  var names1;
-  var aa;
 
 
   @override
   Widget build(BuildContext context) {
 
     setState(() {
-       names1 = FormTabPage.names;
-       aa = FormTabPage.a;
+      print("set state called");
+
     });
+
 
     return Padding(
       padding: const EdgeInsets.all(20.0),
@@ -74,42 +79,43 @@ class _FormTabPageState extends State<FormTabPage> {
                   ListView.builder(
                       itemBuilder: (context,index){
                         return ListTile(
-                          title: Text(names1[index]),
+                          title: Text(FormItem.names[index]),
                         );
                       },
-                    itemCount: names1.length,
+                    itemCount: FormItem.names.length,
                     shrinkWrap: true,
                     physics: NeverScrollableScrollPhysics(),
                   ),
-
 
                   SizedBox(
                     height: spaceAbovepair,
                   ),
 
-                  SizedBox(
-                    width: 400.0,
-                    child: DropdownButton(
-                      // Initial Value
-                      value: selectedCountry,
-                      // Down Arrow Icon
-                      icon: const Icon(Icons.keyboard_arrow_down),
-                      // Array list of items
-                      items: FormTabPage.names.values.map((var items) {
-                        return DropdownMenuItem(
-                          value: items,
-                          child: Text(items),
-                        );
-                      }).toList(),
 
-                      onChanged: (var newValue) {
-                        setState(() {
-                          selectedCountry = newValue;
-                          print(selectedCountry);
-                        });
-                      },
-                    ),
-                  ),
+                  // SizedBox(
+                  //   width: 400.0,
+                  //   child: DropdownButton(
+                  //     // Initial Value
+                  //     value: selectedCountry,
+                  //     // Down Arrow Icon
+                  //     icon: const Icon(Icons.keyboard_arrow_down),
+                  //     // Array list of items
+                  //     items: FormTabPage.names.values.map((var items) {
+                  //       return DropdownMenuItem(
+                  //         value: items,
+                  //         child: Text(items),
+                  //       );
+                  //     }).toList(),
+                  //
+                  //     onChanged: (var newValue) {
+                  //       setState(() {
+                  //         selectedCountry = newValue;
+                  //         print(selectedCountry);
+                  //       });
+                  //     },
+                  //   ),
+                  // ),
+
 
 
                   SizedBox(
@@ -121,6 +127,7 @@ class _FormTabPageState extends State<FormTabPage> {
                   ...state.storeCountriesModel.data!.map(
                           (storeCountries) => FormItem(storeCountries: storeCountries)
                   ).toList(),
+
 
 
 

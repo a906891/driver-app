@@ -6,6 +6,9 @@ import 'package:flutter/material.dart';
 class FormItem extends StatelessWidget {
   final StoreCountries storeCountries;
 
+  var selectedCountry;
+  static var names = {};
+  static var a = 0;
 
   FormItem({Key? key,required this.storeCountries}) : super(key: key);
 
@@ -14,16 +17,39 @@ class FormItem extends StatelessWidget {
   Widget build(BuildContext context) {
 
     // adding in map if it does not have same country
-    if(!FormTabPage.names.containsValue(storeCountries.country?.name))
+    if(!names.containsValue(storeCountries.country?.name))
       {
-        FormTabPage.names[FormTabPage.a] = storeCountries.country?.name;
-        FormTabPage.a++;
+        names[a] = storeCountries.country?.name;
+        a++;
         print("Added to list");
+
       }
 
     return Center(
       child: Column(
         children: [
+
+          SizedBox(
+            width: 400.0,
+            child: DropdownButton(
+              // Initial Value
+              value: selectedCountry,
+              // Down Arrow Icon
+              icon: const Icon(Icons.keyboard_arrow_down),
+              // Array list of items
+              items: names.values.map((var items) {
+                return DropdownMenuItem(
+                  value: items,
+                  child: Text(items),
+                );
+              }).toList(),
+
+              onChanged: (var newValue) {
+                  selectedCountry = newValue;
+                  print(selectedCountry);
+              },
+            ),
+          ),
 
           Text("count from store ${storeCountries.country?.name}"),
 

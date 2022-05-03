@@ -27,6 +27,8 @@ class _HomeTabPageState extends State<HomeTabPage> {
     timer = Timer.periodic(const Duration(seconds: 10), (Timer t) => locatePosition());
   }
 
+
+
   @override
   void dispose() {
     Fluttertoast.showToast(msg: "timer canceled");
