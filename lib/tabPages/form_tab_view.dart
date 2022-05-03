@@ -8,25 +8,21 @@ import 'form/item/form_item.dart';
 class FormTabPage extends StatefulWidget {
   const FormTabPage({Key? key}) : super(key: key);
 
-
   static Widget providedInstance(){
-
     return BlocProvider(
       create: (context)=> FormBloc()..add(FormEvent()),
       child: const FormTabPage());
   }
 
-
-
+  static var names = {};
+  static var a = 0;
+  static var selectedCountry;
 
   @override
   State<FormTabPage> createState() => _FormTabPageState();
 }
 
 class _FormTabPageState extends State<FormTabPage> {
-
-
-  Timer? timer;
 
   TextEditingController nameEditableController = TextEditingController();
   TextEditingController phoneEditableController = TextEditingController();
@@ -44,17 +40,8 @@ class _FormTabPageState extends State<FormTabPage> {
   double spaceBetweenTextAndField = 5.0;
   double spaceAbovepair = 15.0;
 
-  var selectedCountry;
-
-
   @override
   Widget build(BuildContext context) {
-
-    setState(() {
-      print("set state called");
-
-    });
-
 
     return Padding(
       padding: const EdgeInsets.all(20.0),
@@ -70,19 +57,13 @@ class _FormTabPageState extends State<FormTabPage> {
                     style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                   ),
 
-                  // Countires come here
-                  ElevatedButton(
-                      onPressed: (){
-                      },
-                      child: Text("Add to Map")),
-
                   ListView.builder(
                       itemBuilder: (context,index){
                         return ListTile(
-                          title: Text(FormItem.names[index]),
+                          title: Text(FormTabPage.names[index]),
                         );
                       },
-                    itemCount: FormItem.names.length,
+                    itemCount: FormTabPage.names.length,
                     shrinkWrap: true,
                     physics: NeverScrollableScrollPhysics(),
                   ),
@@ -91,30 +72,29 @@ class _FormTabPageState extends State<FormTabPage> {
                     height: spaceAbovepair,
                   ),
 
+                  SizedBox(
+                    width: 400.0,
+                    child: DropdownButton(
+                      // Initial Value
+                      value: FormTabPage.selectedCountry,
+                      // Down Arrow Icon
+                      icon: const Icon(Icons.keyboard_arrow_down),
+                      // Array list of items
+                      items: FormTabPage.names.values.map((var items) {
+                        return DropdownMenuItem(
+                          value: items,
+                          child: Text(items),
+                        );
+                      }).toList(),
 
-                  // SizedBox(
-                  //   width: 400.0,
-                  //   child: DropdownButton(
-                  //     // Initial Value
-                  //     value: selectedCountry,
-                  //     // Down Arrow Icon
-                  //     icon: const Icon(Icons.keyboard_arrow_down),
-                  //     // Array list of items
-                  //     items: FormTabPage.names.values.map((var items) {
-                  //       return DropdownMenuItem(
-                  //         value: items,
-                  //         child: Text(items),
-                  //       );
-                  //     }).toList(),
-                  //
-                  //     onChanged: (var newValue) {
-                  //       setState(() {
-                  //         selectedCountry = newValue;
-                  //         print(selectedCountry);
-                  //       });
-                  //     },
-                  //   ),
-                  // ),
+                      onChanged: (var newValue) {
+                        setState(() {
+                          FormTabPage.selectedCountry = newValue;
+                          print(FormTabPage.selectedCountry);
+                        });
+                      },
+                    ),
+                  ),
 
 
 
@@ -123,11 +103,9 @@ class _FormTabPageState extends State<FormTabPage> {
                   ),
 
 
-
                   ...state.storeCountriesModel.data!.map(
                           (storeCountries) => FormItem(storeCountries: storeCountries)
                   ).toList(),
-
 
 
 
