@@ -17,7 +17,6 @@ class FormTabPage extends StatefulWidget {
   static var names = {};
   static var a = 0;
 
-
   @override
   State<FormTabPage> createState() => _FormTabPageState();
 }
@@ -40,11 +39,18 @@ class _FormTabPageState extends State<FormTabPage> {
   double spaceAbovepair = 15.0;
 
   var selectedCountry;
-
+  var names1;
+  var aa;
 
 
   @override
   Widget build(BuildContext context) {
+
+    setState(() {
+       names1 = FormTabPage.names;
+       aa = FormTabPage.a;
+    });
+
     return Padding(
       padding: const EdgeInsets.all(20.0),
       child: BlocBuilder<FormBloc,FormState1>(
@@ -68,10 +74,10 @@ class _FormTabPageState extends State<FormTabPage> {
                   ListView.builder(
                       itemBuilder: (context,index){
                         return ListTile(
-                          title: Text(FormTabPage.names[index]),
+                          title: Text(names1[index]),
                         );
                       },
-                    itemCount: FormTabPage.names.length,
+                    itemCount: names1.length,
                     shrinkWrap: true,
                     physics: NeverScrollableScrollPhysics(),
                   ),
